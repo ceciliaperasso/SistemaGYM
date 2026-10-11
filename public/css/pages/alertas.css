@@ -1,0 +1,133 @@
+.alert-card {
+    max-width: 600px;
+    background-color: var(--bg-card);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px;
+}
+
+.list .alert-card {
+    max-width: none;
+}
+
+
+.alert-card--today {
+    border-left: 5px solid var(--danger);
+}
+.today-label { 
+    color: var(--danger); 
+    font-weight: 700; 
+    font-size: 0.95rem; 
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+ 
+.alert-card__row { 
+    flex: 1;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+.name { 
+    font-weight: 700; 
+    font-size: 0.8rem; 
+    color: var(--text-strong); 
+}
+
+.dni { 
+    font-size: 0.7rem; 
+    color: var(--text-muted); 
+    margin-top: 2px; 
+}
+.alert-card .amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+
+}
+
+.alert-card--today .amount { 
+    font-size: 1.8rem; 
+    font-weight: 700; 
+}
+
+
+
+
+  /* ---------- Botones ---------- */
+.actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.actions button {
+    flex: 1;
+}
+
+@media (min-width: 600px) {
+    .display .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        flex: 1;
+    }
+
+    .display .actions button {
+        flex: none;
+    }
+
+    .display {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.name-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.alert-card--before {
+    margin: 1rem 0;
+}
+
+.alert-card-day {
+    margin-bottom: 1rem;
+}
+
+.section-date {
+    margin-bottom: 0.4rem;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 900px) {
+    .list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1100px) {
+    .list {
+        grid-template-columns: 1fr 1fr;
+    }
+}

@@ -1,0 +1,81 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    /* ---------- Tipografía ---------- */
+    --font-family-sans: "Inter", sans-serif;
+
+    /* ---------- Fondos ---------- */
+    --bg-page: #0b1630;
+    --bg-card: #111d3b;
+    --bg-elevated: #172742;
+    --bg-secondary: #162443;
+    --bg-input: #091228;
+    --bg-input-alt: #0c1731;
+    --bg-secondary-active: #273555;
+    --bg-primary-subtle: #33aaff1a;
+
+    /* ---------- Marca ---------- */
+    --primary: #0088e8;
+    --primary-light: #33aaff;
+
+    /* ---------- Estados ---------- */
+    --success: #43b75d;
+    --success-bright: #34d399;
+    --warning: #ffbb33;
+    --warning-light: #ffc043;
+    --danger: #ee443f;
+    --primary-bg-subtle: #0088e81a;
+    --success-bg-subtle: #43b75d1a;
+    --warning-bg-subtle: #ffbb331a;
+    --danger-bg-subtle: #ee443f1a;
+
+    /* ---------- Estados: fondos de tarjetas ---------- */
+    --success-bg: #112634;
+    --success-line: #1d4a3e;
+    --warning-bg: #232730;
+    --warning-line: #5a4c31;
+    --danger-bg: #221b31;
+    --danger-line: #552534;
+
+    /* ---------- Badges ---------- */
+    --badge-success-bg: #162c3e;
+    --badge-success-border: #2a6a4c;
+    --badge-active-bg: #153a4c;
+    --badge-active-border: #144d54;
+    --badge-warning-bg: #292d3a;
+    --badge-warning-border: #886c37;
+    --badge-danger-bg: #25213c;
+    --badge-danger-border: #862f38;
+
+    /* ---------- Texto ---------- */
+    --text-strong: #ffffff;
+    --text-primary: #e5e7ea;
+    --text-secondary: #cacdd3;
+    --text-label: #aeb3bb;
+    --text-muted: #9398a4;
+    --text-placeholder: #787e8d;
+    --text-body: #e0e0e0;
+    --text-input-placeholder: #4587b7;
+
+    /* ---------- Bordes ---------- */
+    --border-strong: #405687;
+    --border: #18233c;
+    --border-subtle: #263047;
+    --border-faint: #283961;
+
+    /* ---------- Espaciado ---------- */
+    --espacio-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+    --espacio-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+    --espacio-md: clamp(1rem, 0.85rem + 1vw, 1.5rem);
+    --espacio-lg: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    --espacio-xl: clamp(1.5rem, 1.2rem + 2vw, 2.5rem);
+
+    /* ---------- Radios ---------- */
+    --radio-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+    --radio-md: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+    --radio-pill: clamp(1.25rem, 1rem + 1vw, 1.5625rem);
+
+    /* ---------- Sombras ---------- */
+    --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.18);
+}

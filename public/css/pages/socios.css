@@ -1,0 +1,178 @@
+
+
+.buscador-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1rem;
+
+    margin: 0.5rem 0 0.5rem;
+
+    .input-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 520px;
+    }
+}
+
+
+
+.filtros-container{
+    margin: 0 auto;
+    display: flex;
+    gap: var(--espacio-xs);
+    overflow-x: auto;
+    margin-bottom: var(--espacio-lg);
+    padding-top: 0.30rem;
+}
+
+.filtros-container::-webkit-scrollbar{
+    display: none;
+}
+
+/* ----Tarjeta------ */
+
+.tarjetas-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.tarjeta-socio {
+    background-color: var(--danger-bg-subtle);
+    padding: 1rem 1rem 0rem;
+    border-radius: 12px;
+
+    .tarjeta-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.8rem;
+
+        border-bottom: 1px solid var(--danger);
+
+        .info-usuario {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            div > p {
+                font-size: 0.6rem;
+                color: var(--text-muted);
+            }
+        }
+
+        .flecha-perfil {
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+    }
+
+    .tarjeta-bottom {
+        display: flex;
+        justify-content: space-between;
+        height: 50%;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+
+            p {
+                font-size: 0.6rem;
+            }
+        }
+
+        .detalles-vencimiento {
+            .fecha {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                font-size: 0.8rem;
+                padding-bottom: 0.1rem;
+
+                svg {
+                    color: var(--danger);
+                }
+            }
+        }
+        .detalles-plan {
+
+            .precio {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: var(--danger);
+            }
+        }
+
+    }
+}
+
+.tarjeta-socio.vencida { 
+    background-color: var(--danger-bg-subtle);
+    .tarjeta-top {
+        border-bottom: 1px solid var(--danger);
+    }
+
+    .tarjeta-bottom .fecha svg,
+    .tarjeta-bottom .precio,
+    .tarjeta-top .info-usuario .avatar {
+        color: var(--danger);
+    }
+}
+
+.tarjeta-socio.próxima-a-vencer {
+    background-color: var(--warning-bg-subtle);
+    .tarjeta-top {
+        border-bottom: 1px solid var(--warning);
+    }
+
+    .tarjeta-bottom .fecha svg,
+    .tarjeta-bottom .precio,
+    .tarjeta-top .info-usuario .avatar {
+        color: var(--warning);
+    }
+}
+
+.tarjeta-socio.pagada { 
+    background-color: var(--success-bg-subtle);
+    .tarjeta-top {
+        border-bottom: 1px solid var(--success);
+    }
+
+    .tarjeta-bottom .fecha svg,
+    .tarjeta-bottom .precio,
+    .tarjeta-top .info-usuario .avatar {
+        color: var(--success);
+    }
+}
+
+.tarjeta-socio.al-día { 
+    background-color: var(--success-bg-subtle);
+    .tarjeta-top {
+        border-bottom: 1px solid var(--success);
+    }
+
+    .tarjeta-bottom .fecha svg,
+    .tarjeta-bottom .precio,
+    .tarjeta-top .info-usuario .avatar {
+        color: var(--success);
+    }
+}
+
+.tarjeta-socio.sin-cuota { 
+    background-color: var(--primary-bg-subtle);
+    .tarjeta-top {
+        border-bottom: 1px solid var(--primary);
+    }
+
+    .tarjeta-bottom .fecha svg,
+    .tarjeta-bottom .precio,
+    .tarjeta-top .info-usuario .avatar {
+        color: var(--primary);
+    }
+}
+

@@ -1,0 +1,60 @@
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+h3 {
+    font-size: 0.9rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+button {
+    font-size: 0.60rem;
+}
+
+a {
+    font-size: 0.70rem;
+}
+
+label {
+    font-size: 0.80rem;
+}
+input {
+    font-size: 0.9rem;
+}
+
+@media (min-width: 425px) {
+    html {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* 
+Elemento	            Tamaño en Móvil	    Tamaño en Escritorio
+H1 (Título principal)	28px - 36px	        36px - 48px
+H2 (Subtítulo)	        22px - 28px	        28px - 36px
+H3 (Secciones)	        18px - 22px	        22px - 24px
+Cuerpo de texto	        16px	            16px - 18px
+Textos auxiliares	    12px - 14px	        13px - 14px */
