@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/pages/agregar.socio.css">
+    <script type="module" src="../js/ui/nuevo-socio.ui.js"></script>
     <title>Agregar socio</title>
 </head>
 <body>
@@ -29,7 +30,7 @@
                     <h1>Nuevo socio</h1>
                 </header>
 
-                <form class="member-form">
+                <form class="member-form" id="form__agregar_socio">
 
                     <section class="form-section">
                         <h3>DATOS PERSONALES</h2>
@@ -37,17 +38,17 @@
                         <div class="grid-layout">
 
                             <div class="input-group">
-                                <label for="nombre">Nombre</label>
+                                <label for="nombre">Nombre*</label>
                                 <input type="text" id="nombre" placeholder="Juan">
                             </div>
 
                             <div class="input-group">
-                                <label for="apellido">Apellido</label>
+                                <label for="apellido">Apellido*</label>
                                 <input type="text" id="apellido" placeholder="Perez">
                             </div>
 
                             <div class="input-group icon-right">
-                                <label for="dni">DNI / Documento</label>
+                                <label for="dni">DNI / Documento*</label>
                                 <input type="text" id="dni" placeholder="32.145.678">
                             </div>
 

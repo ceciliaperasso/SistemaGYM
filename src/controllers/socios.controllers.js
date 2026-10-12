@@ -53,7 +53,7 @@ export const listarSocios = asyncHandler( async (req, res)=> {
                 ELSE 'Al día'
             END AS estado_cuota
         FROM socios s
-        JOIN planes pl
+        LEFT JOIN planes pl
             ON pl.id_plan = s.id_plan
         LEFT JOIN ultima_cuota uc
             ON uc.id_socios = s.id_socios
@@ -157,7 +157,7 @@ export const buscarSocios = asyncHandler( async (req, res)=> {
             s.nombre,
             s.apellido,
             s.dni,
-            s.edad,
+            s.fecha_nacimiento,
             s.telefono,
             s.redes,
             s.email,
@@ -270,10 +270,10 @@ export const agregarSocio = async(req, res) => {
     }
 
     const {rows} = await pool.query( `INSERT INTO socios 
-        (id_plan, dni, nombre, apellido, edad, telefono, redes, email, fecha_alta, activo)
+        (id_plan, dni, nombre, apellido, fecha_nacimiento, telefono, redes, email, fecha_alta, activo)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, COALESCE($9, CURRENT_DATE), $10)
        RETURNING *`, 
-       [body.id_plan, body.dni, body.nombre, body.apellido, body.edad || null,
+       [body.id_plan|| null, body.dni, body.nombre, body.apellido, body.edad || null,
         body.telefono || null, body.redes || null, body.email || null,  body.fecha_alta || null, body.activo
         ])
 
@@ -318,4 +318,21 @@ export const editarSocio = async(req, res) => {
 
     return res.json(rows[0])
 
+};
+
+export const eliminarSocio = async(req, res) => {
+    const id = parseInt(req.params.id, 10);
+    if(Number.isNaN(id)) {
+        return res.status(400).json({mensaje: "El id es invalido, debe ser un número."})
+    }
+
+    const {rows} =  await pool.query(`DELETE FROM socios WHERE id_socios = $1`, [id])
+    
+    if (rows.length === 0) {
+        return res.status(404).send("mensaje: No exite este plan")
+    }
+    return res.json({
+        plan: rows[0],
+        mensaje: "Plan eliminado correctamente"
+    })
 };

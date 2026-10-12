@@ -46,7 +46,7 @@
                     <div class="actions">
                     <button class="btn btn-secundario"><svg><use href="#i-edit"/></svg>
                         <span class="btn-texto">Editar</span></button>
-                    <button class="btn"><svg><use href="#i-trash"/></svg>
+                    <button class="btn" id="eliminar"><svg><use href="#i-trash"/></svg>
                         <span class="btn-texto">Eliminar</span></button>
                     </div>
                 </section>
@@ -82,9 +82,9 @@
                 <section class="section-data">
                     <h2 class="section-title">DATOS PERSONALES</h2>
                     <dl class="data">
-                        <div class="data__row"><dt>DNI / Documento</dt><dd class="mono">32.145.678</dd></div>
-                        <div class="data__row"><dt>Teléfono</dt><dd>+54 9 11 2345-6789</dd></div>
-                        <div class="data__row"><dt>Correo electrónico</dt><dd>carlos.perez@email.com</dd></div>
+                        <div class="data__row"><dt>DNI / Documento</dt><dd class="data-dni">32.145.678</dd></div>
+                        <div class="data__row"><dt>Teléfono</dt><dd class="data-tel">+54 9 11 2345-6789</dd></div>
+                        <div class="data__row"><dt>Correo electrónico</dt><dd class="data-email">-</dd></div>
                     </dl>
                 </section>
                 
@@ -92,12 +92,13 @@
                 <section class="section-history">
                     <h2 class="section-title">HISTORIAL DE PAGOS</h2>
                     <div class="history">
+                        <button class="btn btn-secundario">Ver todos los comprobantes</button>
                         <article class="card payment">
-                        <div>
-                            <div class="payment__top"><span class="payment__method">Efectivo</span><span class="tag tag--partial">Parcial</span></div>
-                            <p class="payment__date">15 Sep 2023</p>
-                        </div>
-                        <p class="payment__amount">+ $7.000</p>
+                            <div>
+                                <div class="payment__top"><span class="payment__method">Efectivo</span><span class="tag tag--partial">Parcial</span></div>
+                                <p class="payment__date">15 Sep 2023</p>
+                            </div>
+                            <p class="payment__amount">+ $7.000</p>
                         </article>
                         <article class="card payment">
                         <div>
@@ -106,7 +107,6 @@
                         </div>
                         <p class="payment__amount">+ $14.000</p>
                         </article>
-                        <button class="btn btn-secundario">Ver todos los comprobantes</button>
                     </div>
                 </section>
             </div>
