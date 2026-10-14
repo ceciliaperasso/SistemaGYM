@@ -29,7 +29,7 @@ export const buscarSocios = asyncHandler( async (req, res)=> {
 
     const resultadoSocio = await pool.query(socioRepository.consultaSocio, [id])
     if (resultadoSocio.rows.length === 0){
-        return res.status(404).json({mensaje: "No existe este plan."})
+        return res.status(404).json({mensaje: "No existe este socio."})
     };
 
     const resultadoCuotas = await pool.query(socioRepository.consultaCuotas, [id]);
@@ -108,7 +108,7 @@ export const eliminarSocio = asyncHandler(async (req, res) => {
         return res.status(404).send("mensaje: No exite este plan")
     }
     return res.json({
-        plan: rows[0],
-        mensaje: "Plan eliminado correctamente"
+        socio: rows[0],
+        mensaje: "Socio eliminado correctamente"
     })
 });

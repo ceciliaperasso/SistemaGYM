@@ -1,0 +1,107 @@
+
+-- =============================================================== --
+-- SCRIPTS PARA CREAR CADA UNA DE LAS TABLAS PARA LA BASE DE DATOS --
+-- =============================================================== --
+
+-- =========================================
+-- 1. TABLA SOCIOS
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS socios
+(
+    id_socios integer NOT NULL DEFAULT nextval('socios_id_socios_seq'::regclass),
+    id_plan integer,
+    dni integer NOT NULL,
+    nombre character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    apellido character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    telefono character varying(20) COLLATE pg_catalog."default",
+    redes character varying(50) COLLATE pg_catalog."default",
+    email character varying(50) COLLATE pg_catalog."default",
+    fecha_alta date,
+    activo boolean,
+    fecha_nacimiento date,
+    CONSTRAINT socios_pkey PRIMARY KEY (id_socios),
+    CONSTRAINT socios_id_plan_fkey FOREIGN KEY (id_plan)
+        REFERENCES public.planes (id_plan) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+-- =========================================
+-- 2. TABLA PLANES
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS planes
+(
+    id_plan integer NOT NULL DEFAULT nextval('planes_id_planes_seq'::regclass),
+    dias character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    precio integer NOT NULL,
+    CONSTRAINT planes_pkey PRIMARY KEY (id_plan)
+)
+
+-- =========================================
+-- 3. TABLA CUOTAS
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS cuotas
+(
+    id_cuota integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    id_socios integer NOT NULL,
+    fecha_emision date NOT NULL DEFAULT CURRENT_DATE,
+    fecha_ult_rec date,
+    vencimiento date NOT NULL,
+    monto numeric(10,2) NOT NULL,
+    estado character varying(20) COLLATE pg_catalog."default" NOT NULL DEFAULT 'Pendiente'::character varying,
+    periodo character varying(30) COLLATE pg_catalog."default",
+    CONSTRAINT cuotas_pkey PRIMARY KEY (id_cuota),
+    CONSTRAINT fk_cuotas_socios FOREIGN KEY (id_socios)
+        REFERENCES public.socios (id_socios) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE RESTRICT,
+    CONSTRAINT chk_cuotas_monto CHECK (monto > 0::numeric),
+    CONSTRAINT chk_estado_cuota CHECK (estado::text = ANY (ARRAY['Pendiente'::character varying, 'Pago Parcial'::character varying, 'Vencida'::character varying, 'Pagada'::character varying]::text[]))
+)
+
+
+-- =========================================
+-- 4. TABLA PAGOS
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS pagos
+(
+    id_pago integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    id_socios integer NOT NULL,
+    monto_total numeric(10,2) NOT NULL,
+    fecha_pago date NOT NULL DEFAULT CURRENT_DATE,
+    metodo_pago character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT pagos_pkey PRIMARY KEY (id_pago),
+    CONSTRAINT fk_pagos_socios FOREIGN KEY (id_socios)
+        REFERENCES public.socios (id_socios) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE RESTRICT,
+    CONSTRAINT chk_pagos_monto CHECK (monto_total > 0::numeric)
+)
+
+
+-- =========================================
+-- 5. TABLA DETALLE PAGOS
+-- =========================================
+
+CREATE TABLE IF NOT EXISTS detalle_pago
+(
+    id_detalle integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    id_pago integer NOT NULL,
+    id_cuota integer NOT NULL,
+    monto_aplicado numeric(10,2) NOT NULL,
+    CONSTRAINT detalle_pago_pkey PRIMARY KEY (id_detalle),
+    CONSTRAINT uq_pago_cuota UNIQUE (id_pago, id_cuota),
+    CONSTRAINT fk_detalle_pago_cuotas FOREIGN KEY (id_cuota)
+        REFERENCES public.cuotas (id_cuota) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE RESTRICT,
+    CONSTRAINT fk_detalle_pago_pagos FOREIGN KEY (id_pago)
+        REFERENCES public.pagos (id_pago) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE RESTRICT,
+    CONSTRAINT chk_detalle_monto CHECK (monto_aplicado > 0::numeric)
+)
