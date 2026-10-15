@@ -1,3 +1,39 @@
+# Configuración del archivo .env.example
+
+El archivo .env.example es una plantilla que indica qué datos necesita el proyecto para conectarse a la base de datos.
+
+## ¿Qué hay que hacer?
+
+En la carpeta principal del proyecto, buscá el archivo .env.example.
+
+Creá una copia y llamala .env (quitando .example).
+
+Abrí el archivo .env y completá los datos de conexión.
+
+La configuración debería quedar así:
+
+```bash
+PORT=3000
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=sistema_gym
+DB_USER=postgres
+DB_PASSWORD=tu_contraseña
+```
+
+DB_HOST: se deja como localhost.
+
+DB_PORT: normalmente es 5432 o 5433. Si PostgreSQL está configurado con otro puerto, hay que colocar ese.
+
+DB_NAME: nombre de la base de datos que creaste para el proyecto.En nuestro caso se llama => sistema_gym.
+
+DB_USER: es el usuario de PostgreSQL que puede ser => postgres.
+
+DB_PASSWORD: reemplazá tu_contraseña por la contraseña que configuraste al instalar PostgreSQL.
+
+**Importante:** no cambies los nombres de las variables, solo sus valores si es necesario.
+
 # SistemaGYM — Guía de instalación y ejecución
 
 Esta guía explica cómo preparar el entorno de desarrollo de SistemaGYM desde cero, crear la base de datos, cargar datos ficticios e iniciar la aplicación.
