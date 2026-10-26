@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GYM VG - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  
+  <header class="header">
+    <div class="header-title">Inicio</div>
+    <div class="logo">GYM <span>VG</span></div>
+  </header>
+
+  
+  <div class="search-wrap">
+    <div class="search">
+      <input type="search" placeholder="Buscar socio" aria-label="Buscar socio" />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+      </svg>
+    </div>
+  </div>
+
+
+  <div class="greeting">
+    <h1>¡Hola, Victoria!</h1>
+    <p>Hoy vencen <strong>5 cuotas</strong>.</p>
+  </div>
+
+
+  <main class="main">
+    <!-- Income -->
+    <section class="income-card">
+      <div class="income-label">Ingresos del mes</div>
+      <div class="income-amount">$900,000</div>
+    </section>
+
+
+    <section class="resumen">
+      <div class="resumen-title">Resumen del mes</div>
+      <ul class="resumen-list">
+        <li class="resumen-item">
+          <span>Total de socios</span>
+          <span class="num blue">45</span>
+        </li>
+        <li class="resumen-item">
+          <span>Socios activos</span>
+          <span class="num yellow">30</span>
+        </li>
+        <li class="resumen-item">
+          <span>Cuotas pagadas</span>
+          <span class="num green">25</span>
+        </li>
+        <li class="resumen-item">
+          <span>Cuotas vencidas</span>
+          <span class="num red">5</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="alertas">
+      <div class="alertas-title">Alerta de deudas</div>
+
+      <article class="debt-card">
+        <div class="debt-info">
+          <div class="debt-name-row">
+            <span class="debt-name">Marcos Ramirez</span>
+            <span class="badge">Vencido</span>
+          </div>
+          <span class="debt-dni">DNI: 41.568.436</span>
+        </div>
+        <span class="debt-amount">$21,000</span>
+        <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </article>
+
+      <article class="debt-card">
+        <div class="debt-info">
+          <div class="debt-name-row">
+            <span class="debt-name">Marcos Ramirez</span>
+            <span class="badge">Vencido</span>
+          </div>
+          <span class="debt-dni">DNI: 41.568.436</span>
+        </div>
+        <span class="debt-amount">$21,000</span>
+        <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </article>
+
+      <article class="debt-card">
+        <div class="debt-info">
+          <div class="debt-name-row">
+            <span class="debt-name">Marcos Ramirez</span>
+            <span class="badge">Vencido</span>
+          </div>
+          <span class="debt-dni">DNI: 41.568.436</span>
+        </div>
+        <span class="debt-amount">$21,000</span>
+        <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </article>
+
+      <article class="debt-card">
+        <div class="debt-info">
+          <div class="debt-name-row">
+            <span class="debt-name">Marcos Ramirez</span>
+            <span class="badge">Vencido</span>
+          </div>
+          <span class="debt-dni">DNI: 41.568.436</span>
+        </div>
+        <span class="debt-amount">$21,000</span>
+        <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </article>
+
+      <article class="debt-card">
+        <div class="debt-info">
+          <div class="debt-name-row">
+            <span class="debt-name">Marcos Ramirez</span>
+            <span class="badge">Vencido</span>
+          </div>
+          <span class="debt-dni">DNI: 41.568.436</span>
+        </div>
+        <span class="debt-amount">$21,000</span>
+        <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </article>
+
+      <button class="btn-more" type="button">Ver más</button>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navegación principal">
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+      </svg>
+      Socios
+    </a>
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+      </svg>
+      Alert
+    </a>
+    <a href="#" class="nav-item active">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      </svg>
+      Home
+    </a>
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+      </svg>
+      Pagos
+    </a>
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+      </svg>
+      Planes
+    </a>
+  </nav>
+</body>
+</html>
