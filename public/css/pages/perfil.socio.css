@@ -173,6 +173,12 @@ section {
   gap: 12px;
 }
 
+.mensaje {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .payment {
   display: flex;
   align-items: center;

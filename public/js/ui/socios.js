@@ -1,20 +1,31 @@
 import { buscarSociosPorTexto, listarSocios } from "../api/socios.js";
 
+// ---------- DOM ----------
 const contenedorTarjetas = document.querySelector('.tarjetas-container');
 const buscador = document.getElementById('buscador');
 const botonesFiltro = document.querySelectorAll('.filtro-btn');
 
+// ---------- Estado ----------
 let sociosCargados = [];
 let textoBusqueda = "";
 let filtroActivo = "todos";
 let timeoutId;
 let solicitudActual = 0;
 
-export function mostrarSocios(socios) {
+// ---------- Vista ----------
+// Reemplaza a mostrarError y mostrarEstadoVacio
+function mostrarMensaje(texto, clase) {
+    const mensaje = document.createElement('p');
+    if (clase) mensaje.classList.add(clase);
+    mensaje.textContent = texto;
+    contenedorTarjetas.replaceChildren(mensaje);
+}
+
+function mostrarSocios(socios) {
     contenedorTarjetas.innerHTML = '';
 
     if (socios.length === 0) {
-        mostrarEstadoVacio();
+        mostrarMensaje('No se encontraron socios con los criterios seleccionados.');
         return;
     }
 
@@ -23,20 +34,7 @@ export function mostrarSocios(socios) {
     });
 }
 
-function mostrarError(mensaje) {
-    const mensajeError = document.createElement('p');
-    mensajeError.classList.add('error');
-    mensajeError.textContent = mensaje;
-    contenedorTarjetas.replaceChildren(mensajeError);
-}
-
-function mostrarEstadoVacio() {
-    const mensaje = document.createElement('p');
-    mensaje.textContent = 'No se encontraron socios con los criterios seleccionados.';
-    contenedorTarjetas.replaceChildren(mensaje);
-}
-
-export function crearTarjeta(socio) {
+function crearTarjeta(socio) {
     const card = document.createElement('div');
     card.classList.add(`tarjeta-socio`);
     const estadoClase = (socio.estado_cuota ?? "").toLowerCase().replaceAll(' ', '-')
@@ -113,6 +111,7 @@ function formatearFecha(fecha) {
     });
 }
 
+// ---------- Filtros ----------
 function filtrarSocios() {
     if (filtroActivo === "todos") {
         return sociosCargados;
@@ -135,50 +134,38 @@ function filtrarSocios() {
     });
 }
 
-function actualizarVista() {
-    mostrarSocios(filtrarSocios());
-}
-
-export async function mostrarTarjetas() {
+// ---------- Carga de datos ----------
+// Reemplaza a mostrarTarjetas y buscarSocios, que eran casi iguales
+async function cargarSocios(obtenerSocios = listarSocios) {
     const solicitud = ++solicitudActual;
 
     try {
-        const socios = await listarSocios();
+        const socios = await obtenerSocios();
         if (solicitud === solicitudActual) {
             sociosCargados = socios;
-            actualizarVista();
+            mostrarSocios(filtrarSocios());
         }
     } catch (error) {
         console.error('No se pudieron cargar los socios.', error);
         if (solicitud === solicitudActual) {
-            mostrarError(error instanceof Error ? error.message : 'No se pudieron cargar los socios.');
+            mostrarMensaje('No se pudieron cargar los socios.', 'error');
         }
     }
 }
 
-async function buscarSocios(texto) {
-    const solicitud = ++solicitudActual;
 
-    try {
-        const socios = await buscarSociosPorTexto(texto);
-        if (solicitud === solicitudActual) {
-            sociosCargados = socios;
-            actualizarVista();
-        }
-    } catch (error) {
-        console.error('No se pudieron buscar los socios.', error);
-        if (solicitud === solicitudActual) {
-            mostrarError(error instanceof Error ? error.message : 'Ocurrió un error al buscar.');
-        }
-    }
+
+function buscarSocios(texto) {
+    return cargarSocios(() => buscarSociosPorTexto(texto));
 }
 
+// ---------- Eventos ----------
 buscador.addEventListener('input', () => {
     textoBusqueda = buscador.value.trim();
     clearTimeout(timeoutId);
 
     if (!textoBusqueda) {
-        mostrarTarjetas();
+       cargarSocios();
         return;
     }
 
@@ -201,7 +188,9 @@ botonesFiltro.forEach(boton => {
         botonesFiltro.forEach(opcion => 
             opcion.classList.toggle('activo', opcion === boton)
         );
-        actualizarVista();
+        mostrarSocios(filtrarSocios());
     });
 });
 
+// ---------- Inicio ----------
+cargarSocios();

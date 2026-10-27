@@ -256,14 +256,29 @@ export async function eliminarSocio(id) {
     return rows;
 }
 
-export async function insertSocio(body) {
+function limpiarSocio(body) {
+    const texto = valor => String(valor ?? "").trim() || null;
+
+    return {
+        id_plan: Number(body.id_plan) || null,
+        dni: Number(String(body.dni ?? "").replace(/\D/g, "")) || null, // acepta "32.145.678"
+        nombre: texto(body.nombre),
+        apellido: texto(body.apellido),
+        fecha_nacimiento: texto(body.fecha_nacimiento),
+        telefono: texto(body.telefono),
+        redes: texto(body.redes),
+        email: texto(body.email),
+        fecha_alta: texto(body.fecha_alta),
+    };
+}
+export async function insertSocio(bodyLimpio) {
+    const body = limpiarSocio(bodyLimpio)
     const resultado = await pool.query( `INSERT INTO socios 
-        (id_plan, dni, nombre, apellido, fecha_nacimiento, telefono, redes, email, fecha_alta, activo)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, COALESCE($9, CURRENT_DATE), $10)
+        (id_plan, dni, nombre, apellido, fecha_nacimiento, telefono, redes, email, fecha_alta)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, COALESCE($9, CURRENT_DATE))
        RETURNING *`, 
-       [body.id_plan|| null, body.dni, body.nombre, body.apellido, body.edad || null,
-        body.telefono || null, body.redes || null, body.email || null,  body.fecha_alta || null, body.activo
-        ])
+       [body.id_plan|| null, body.dni, body.nombre, body.apellido, body.fecha_nacimiento || null,
+        body.telefono || null, body.redes || null, body.email || null,  body.fecha_alta || null])
     
     return resultado
 } 

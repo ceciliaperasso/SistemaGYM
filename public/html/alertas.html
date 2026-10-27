@@ -6,7 +6,7 @@
     <title>Socios - GYM VG</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/pages/alertas.css">
-    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/ui/alertas.js"></script>
 </head>
 <body>
     <!-- Encabezado -->
@@ -23,7 +23,7 @@
             <header>
                 <h1>Notificaciones</h1>
             </header>
-
+            <div id="alertas-hoy"></div>
             <section class="alert-card alert-card--today">
                 <span class="today-label">HOY</span>
                 <div class="display">
@@ -44,9 +44,9 @@
                     </div>
                 </div>
             </section>
-
-            <section class="alert-card--before">
-                <div class="alert-card-day">
+            
+            <section class="alert-card--before" id="alertas-anteriores">
+                <!-- <div class="alert-card-day">
                     <h2 class="section-date">19 Octubre</h2>
                     
                     <div class="list">
@@ -68,8 +68,8 @@
                             </div>
                         </article>
                     </div>
-                </div>
-                <div class="alert-card-day">
+                </div> -->
+                <!-- <div class="alert-card-day">
                     <h2 class="section-date">19 Octubre</h2>
                     
                     <div class="list">
@@ -108,7 +108,7 @@
                             </div>
                         </article>
                     </div>
-                </div>
+                </div> -->
             </section>
         </div>
     </main>
@@ -116,7 +116,7 @@
     <!-- Navegación inferior -->
         <footer class="footer nav-inferior">
             <nav class="contenedor item-conteiner">
-                <a class="nav-item" href="./socios.html">
+                <a class="nav-item activo" href="./socios.html">
                     <span class="nav-icono">
                         <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 14.6667V12.1C0 11.5806 0.133833 11.1033 0.4015 10.6682C0.669167 10.2331 1.02422 9.90063 1.46667 9.67086C2.41389 9.19725 3.37639 8.84219 4.35417 8.60569C5.33194 8.36919 6.325 8.25063 7.33333 8.25002C8.34167 8.24941 9.33472 8.36797 10.3125 8.60569C11.2903 8.84341 12.2528 9.19847 13.2 9.67086C13.6431 9.90002 13.9984 10.2325 14.2661 10.6682C14.5338 11.1039 14.6673 11.5812 14.6667 12.1V14.6667H0ZM16.5 14.6667V11.9167C16.5 11.2445 16.313 10.5988 15.939 9.97977C15.565 9.36072 15.0339 8.82997 14.3458 8.38752C15.125 8.47919 15.8583 8.63594 16.5458 8.85777C17.2333 9.07961 17.875 9.35063 18.4708 9.67086C19.0208 9.97641 19.441 10.3162 19.7313 10.6902C20.0215 11.0642 20.1667 11.473 20.1667 11.9167V14.6667H16.5ZM7.33333 7.33336C6.325 7.33336 5.46181 6.97433 4.74375 6.25627C4.02569 5.53822 3.66667 4.67502 3.66667 3.66669C3.66667 2.65836 4.02569 1.79516 4.74375 1.07711C5.46181 0.359051 6.325 2.3504e-05 7.33333 2.3504e-05C8.34167 2.3504e-05 9.20486 0.359051 9.92292 1.07711C10.641 1.79516 11 2.65836 11 3.66669C11 4.67502 10.641 5.53822 9.92292 6.25627C9.20486 6.97433 8.34167 7.33336 7.33333 7.33336ZM16.5 3.66669C16.5 4.67502 16.141 5.53822 15.4229 6.25627C14.7049 6.97433 13.8417 7.33336 12.8333 7.33336C12.6653 7.33336 12.4514 7.31441 12.1917 7.27652C11.9319 7.23863 11.7181 7.19647 11.55 7.15002C11.9625 6.66113 12.2797 6.11877 12.5015 5.52294C12.7233 4.92711 12.8339 4.30836 12.8333 3.66669C12.8327 3.02502 12.7221 2.40627 12.5015 1.81044C12.2809 1.21461 11.9637 0.672246 11.55 0.183357C11.7639 0.106968 11.9778 0.0571626 12.1917 0.0339403C12.4056 0.0107181 12.6194 -0.000587607 12.8333 2.3504e-05C13.8417 2.3504e-05 14.7049 0.359051 15.4229 1.07711C16.141 1.79516 16.5 2.65836 16.5 3.66669Z" fill="currentColor"/>
@@ -124,27 +124,25 @@
                     </span>
                     <span class="nav-texto">Socios</span>
                 </a>
-                <a class="nav-item activo" href="./alertas.html">
+                <a class="nav-item" href="./alertas.html">
                     <span class="nav-icono">
-                        <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 15.5833V13.75H1.83333V7.33333C1.83333 6.06528 2.21528 4.9387 2.97917 3.95359C3.74306 2.96847 4.73611 2.32284 5.95833 2.01667V1.375C5.95833 0.993058 6.09217 0.668558 6.35983 0.401502C6.6275 0.134446 6.952 0.000613194 7.33333 2.08333e-06C7.71467 -0.000609028 8.03947 0.133224 8.30775 0.401502C8.57603 0.66978 8.70956 0.99428 8.70833 1.375V2.01667C9.93056 2.32222 10.9236 2.96786 11.6875 3.95359C12.4514 4.93931 12.8333 6.06589 12.8333 7.33333V13.75H14.6667V15.5833H0ZM7.33333 18.3333C6.82917 18.3333 6.39772 18.154 6.039 17.7953C5.68028 17.4365 5.50061 17.0048 5.5 16.5H9.16667C9.16667 17.0042 8.98731 17.4359 8.62858 17.7953C8.26986 18.1546 7.83811 18.3339 7.33333 18.3333ZM3.66667 13.75H11V7.33333C11 6.325 10.641 5.46181 9.92292 4.74375C9.20486 4.0257 8.34167 3.66667 7.33333 3.66667C6.325 3.66667 5.46181 4.0257 4.74375 4.74375C4.02569 5.46181 3.66667 6.325 3.66667 7.33333V13.75Z" fill="currentColor"/>
-                        </svg>
+                        <img src="../img/alert.svg" alt="">
                     </span>
                     <span class="nav-texto">Alert</span>
                 </a>
-                <a class="nav-item">
+                <a class="nav-item activo" href="./index.html">
                     <span class="nav-icono">
                         <img src="../img/home.svg" alt="">
                     </span>
                     <span class="nav-texto">Home</span>
                 </a>
-                <a class="nav-item">
+                <a class="nav-item" href="./pago.html">
                     <span class="nav-icono">
                         <img src="../img/pagos.svg" alt="">
                     </span>
                     <span class="nav-texto">Pagos</span>
                 </a>
-                <a class="nav-item">
+                <a class="nav-item" href="./planes.html">
                     <span class="nav-icono">
                         <img src="../img/planes.svg" alt="">
                     </span>
