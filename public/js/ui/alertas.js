@@ -62,7 +62,7 @@ function crearTarjetaAnterior(alerta) {
             <div>
                 <div class="name-line">
                     <p class="name">${alerta.nombre} ${alerta.apellido}</p>
-                    <span class="badge badge--overdue">Vencido</span>
+                    <span class="badge badge--overdue">${alerta.estado}</span>
                 </div>
                 <p class="dni">DNI: ${formatearDni(alerta.dni)}</p>
             </div>
