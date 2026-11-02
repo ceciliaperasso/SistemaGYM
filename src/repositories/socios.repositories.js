@@ -17,7 +17,6 @@ export const buscarPorTexto = async (texto) => {
                 c.id_socios,
                 c.fecha_emision,
                 c.vencimiento,
-                c.activo,
                 c.monto,
                 GREATEST(
                     c.monto - COALESCE(SUM(dp.monto_aplicado), 0),
@@ -138,6 +137,7 @@ export const listaSocios = `WITH cuotas_saldo AS (
 
 export const consultaSocio = `SELECT
             s.id_socios,
+            s.id_plan,
             s.nombre,
             s.apellido,
             s.dni,
@@ -236,13 +236,22 @@ export async function dniDuplicado(dni, id) {
 
 export async function actualizarSocio(id, body) {
     const { rows } = await pool.query(`UPDATE socios SET 
-        id_plan = $1, dni = $2, nombre = $3, apellido = $4, edad =$5, telefono = $6, 
-        redes = $7, email=$8, fecha_alta=COALESCE($9, CURRENT_DATE), activo =$10
+        id_plan = $1, dni = $2, nombre = $3, apellido = $4, telefono = $5,
+        redes = $6, email = $7, fecha_alta = $8, fecha_nacimiento = $9, activo = $10
        WHERE id_socios = $11
        RETURNING *`,
-       [body.id_plan, body.dni, body.nombre, body.apellido, body.edad || null,
-        body.telefono || null, body.redes || null, body.email || null,
-        body.fecha_alta || null, body.activo, id
+       [
+        body.id_plan,
+        body.dni,
+        body.nombre,
+        body.apellido,
+        body.telefono ?? null,
+        body.redes ?? null,
+        body.email ?? null,
+        body.fecha_alta ?? null,
+        body.fecha_nacimiento ?? null,
+        body.activo,
+        id
        ]
     );
 

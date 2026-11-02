@@ -12,6 +12,16 @@ export function buscarSocioPorId(id) {
     return request(`/socios/${id}`)
 }
 
+export function actualizarSocio(id, datosSocio) {
+    return request(`/socios/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosSocio)
+    });
+}
+
 export function agregarSocio(datosSocio){
     return request('/socios', {
     method: "POST",

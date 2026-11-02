@@ -13,9 +13,10 @@ formulario.addEventListener("submit", async (event) => {
     try {
         await agregarSocio(datos);
         formulario.reset();
-        mostrarMensaje("Socio agregado", 'mensaje')
+        window.alert("Socio agregado correctamente.")
     } catch (error) {
         mostrarMensaje(error.message, 'error');
+        window.alert("No se pudo agregar el socio ¿ por qué? ADIVINALO ")
     }
 })
 

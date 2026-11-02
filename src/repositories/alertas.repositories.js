@@ -9,6 +9,7 @@ export async function selectAlertas() {
             s.apellido,
             s.dni,
             c.vencimiento,
+            c.fecha_ult_rec,
             c.monto,
             CASE
                 WHEN c.vencimiento < CURRENT_DATE

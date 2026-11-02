@@ -71,6 +71,24 @@
     flex: 1;
 }
 
+.btn-notificacion-enviada {
+    color: var(--text-muted);
+    cursor: default;
+}
+
+.btn-notificacion-enviada svg path {
+    fill: currentColor;
+}
+
+.btn-secundario.btn-notificacion-enviada:active {
+    transform: none;
+    background-color: var(--bg-secondary);
+}
+
+.alerta-error {
+    font-size: 0.8rem;
+}
+
 @media (min-width: 600px) {
     .display .actions {
         display: flex;

@@ -1,4 +1,5 @@
-import { listarAlertas } from "../api/alertas.js";
+import { listarAlertas, registrarNotificacion } from "../api/alertas.js";
+import { registrarPagoCuota } from "../api/pagos.js";
 
 const contenedorHoy = document.getElementById('alertas-hoy');
 const contenedorAnteriores = document.getElementById('alertas-anteriores');
@@ -24,9 +25,16 @@ function formatearMonto(valor) {
     })}`;
 }
 
+function estadoNotificacion(alerta) {
+    return alerta.fecha_ult_rec
+        ? { deshabilitado: "disabled", clase: "btn-notificacion-enviada" }
+        : { deshabilitado: "", clase: "" };
+}
+
 function crearTarjetaHoy(alerta) {
     const card = document.createElement('section');
     card.classList.add('alert-card', 'alert-card--today');
+    const notificacion = estadoNotificacion(alerta);
 
     card.innerHTML = `
         <span class="today-label">HOY</span>
@@ -39,7 +47,7 @@ function crearTarjetaHoy(alerta) {
                 <p class="amount">${formatearMonto(alerta.monto)}</p>
             </div>
             <div class="actions">
-                <button class="btn btn-secundario" data-accion="notificar" data-id-cuota="${alerta.id_cuota}">
+                <button class="btn btn-secundario ${notificacion.clase}" ${notificacion.deshabilitado} data-accion="notificar" data-id-cuota="${alerta.id_cuota}">
                     <i class="fa-solid fa-bell"></i>
                     <span class="btn-texto">Notificar</span>
                 </button>
@@ -48,6 +56,7 @@ function crearTarjetaHoy(alerta) {
                     <span class="btn-texto">Registrar</span>
                 </button>
             </div>
+            <p class="error alerta-error" role="alert" hidden></p>
         </div>
     `;
 
@@ -56,6 +65,7 @@ function crearTarjetaHoy(alerta) {
 function crearTarjetaAnterior(alerta) {
     const card = document.createElement('article');
     card.classList.add('alert-card');
+    const notificacion = estadoNotificacion(alerta);
 
     card.innerHTML = `
         <div class="alert-card__row">
@@ -69,7 +79,7 @@ function crearTarjetaAnterior(alerta) {
             <p class="amount">${formatearMonto(alerta.monto)}</p>
         </div>
         <div class="actions">
-            <button class="btn btn-secundario" data-accion="notificar" data-id-cuota="${alerta.id_cuota}">
+            <button class="btn btn-secundario ${notificacion.clase}" ${notificacion.deshabilitado} data-accion="notificar" data-id-cuota="${alerta.id_cuota}">
                 <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 15.5833V13.75H1.83333V7.33333C1.83333 6.06528 2.21528 4.9387 2.97917 3.95359C3.74306 2.96847 4.73611 2.32284 5.95833 2.01667V1.375C5.95833 0.993058 6.09217 0.668558 6.35983 0.401502C6.6275 0.134446 6.952 0.000613194 7.33333 2.08333e-06C7.71467 -0.000609028 8.03947 0.133224 8.30775 0.401502C8.57603 0.66978 8.70956 0.99428 8.70833 1.375V2.01667C9.93056 2.32222 10.9236 2.96786 11.6875 3.95359C12.4514 4.93931 12.8333 6.06589 12.8333 7.33333V13.75H14.6667V15.5833H0ZM7.33333 18.3333C6.82917 18.3333 6.39772 18.154 6.039 17.7953C5.68028 17.4365 5.50061 17.0048 5.5 16.5H9.16667C9.16667 17.0042 8.98731 17.4359 8.62858 17.7953C8.26986 18.1546 7.83811 18.3339 7.33333 18.3333ZM3.66667 13.75H11V7.33333C11 6.325 10.641 5.46181 9.92292 4.74375C9.20486 4.0257 8.34167 3.66667 7.33333 3.66667C6.325 3.66667 5.46181 4.0257 4.74375 4.74375C4.02569 5.46181 3.66667 6.325 3.66667 7.33333V13.75Z" fill="#E5E7EA"/>
                 </svg>
@@ -83,10 +93,54 @@ function crearTarjetaAnterior(alerta) {
                 <span class="btn-texto">Registrar</span>
             </button>
         </div>
+        <p class="error alerta-error" role="alert" hidden></p>
     `;
 
     return card;
 }
+
+document.addEventListener("click", async (event) => {
+    const boton = event.target.closest("button[data-accion]");
+
+    if (!boton || boton.disabled) {
+        return;
+    }
+
+    const tarjeta = boton.closest(".alert-card");
+    const textoBoton = boton.querySelector(".btn-texto");
+    const mensajeError = tarjeta.querySelector(".alerta-error");
+    const { accion, idCuota } = boton.dataset;
+
+    boton.disabled = true;
+    mensajeError.hidden = true;
+
+    try {
+        if (accion === "notificar") {
+            const resultado = await registrarNotificacion(idCuota);
+            const notificacion = resultado?.rows?.[0];
+
+            if (!notificacion?.fecha_ult_rec) {
+                throw new Error("No se pudo registrar la notificación para esta cuota.");
+            }
+
+            boton.classList.add("btn-notificacion-enviada");
+            return;
+        }
+
+        if (accion === "registrar") {
+            textoBoton.textContent = "Registrando...";
+            await registrarPagoCuota(idCuota);
+            window.alert("El pago se registró correctamente.");
+            await cargarAlertas();
+        }
+    } catch (error) {
+        console.error(`No se pudo completar la acción "${accion}" de la alerta.`, error);
+        mensajeError.textContent = error.message || "No se pudo completar la acción.";
+        mensajeError.hidden = false;
+        boton.disabled = false;
+        textoBoton.textContent = accion === "registrar" ? "Registrar" : "Notificar";
+    }
+});
 
 
 function mostrarNotificaciones(alertas) {

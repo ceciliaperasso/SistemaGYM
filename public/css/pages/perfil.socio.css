@@ -61,6 +61,12 @@
   padding: 1rem;
 }
 
+.fee__crear-cuota {
+  align-self: center;
+  width: max-content;
+  max-width: 100%;
+}
+
 .fee__title {
   color: var(--warning);
   letter-spacing: 0.01em;
@@ -232,6 +238,16 @@ section {
 
 .btn-warning:active {
     background-color: var(--warning-light);
+}
+
+.btn-notificacion-enviada {
+  color: var(--text-muted);
+  cursor: default;
+}
+
+.btn-secundario.btn-notificacion-enviada:active {
+  transform: none;
+  background-color: var(--bg-secondary);
 }
 
 .btn-block {

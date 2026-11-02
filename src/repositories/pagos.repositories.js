@@ -37,3 +37,74 @@ export async function totalPagos() {
 
     return resultado;
 }
+
+export async function registrarPagoCuota(idCuota) {
+    const cliente = await pool.connect();
+
+    try {
+        await cliente.query("BEGIN");
+
+        const cuotaResultado = await cliente.query(
+            `SELECT id_cuota, id_socios
+             FROM cuotas
+             WHERE id_cuota = $1
+             FOR UPDATE`,
+            [idCuota]
+        );
+
+        if (cuotaResultado.rows.length === 0) {
+            await cliente.query("ROLLBACK");
+            return { estado: "no_encontrada" };
+        }
+
+        const cuota = cuotaResultado.rows[0];
+        const saldoResultado = await cliente.query(
+            `SELECT GREATEST(
+                c.monto - COALESCE(SUM(dp.monto_aplicado), 0),
+                0
+             )::numeric(10, 2)::text AS saldo
+             FROM cuotas c
+             LEFT JOIN detalle_pago dp
+                ON dp.id_cuota = c.id_cuota
+             WHERE c.id_cuota = $1
+             GROUP BY c.id_cuota, c.monto`,
+            [idCuota]
+        );
+        const saldo = saldoResultado.rows[0].saldo;
+
+        if (Number(saldo) <= 0) {
+            await cliente.query(
+                `UPDATE cuotas SET estado = 'Pagada' WHERE id_cuota = $1`,
+                [idCuota]
+            );
+            await cliente.query("COMMIT");
+            return { estado: "ya_pagada" };
+        }
+
+        const pagoResultado = await cliente.query(
+            `INSERT INTO pagos (id_socios, monto_total, metodo_pago)
+             VALUES ($1, $2, 'Efectivo')
+             RETURNING id_pago, id_socios, monto_total, fecha_pago, metodo_pago`,
+            [cuota.id_socios, saldo]
+        );
+        const pago = pagoResultado.rows[0];
+
+        await cliente.query(
+            `INSERT INTO detalle_pago (id_pago, id_cuota, monto_aplicado)
+             VALUES ($1, $2, $3)`,
+            [pago.id_pago, idCuota, saldo]
+        );
+        await cliente.query(
+            `UPDATE cuotas SET estado = 'Pagada' WHERE id_cuota = $1`,
+            [idCuota]
+        );
+
+        await cliente.query("COMMIT");
+        return { estado: "registrado", pago };
+    } catch (error) {
+        await cliente.query("ROLLBACK");
+        throw error;
+    } finally {
+        cliente.release();
+    }
+}
