@@ -17,6 +17,7 @@ export const buscarPorTexto = async (texto) => {
                 c.id_socios,
                 c.fecha_emision,
                 c.vencimiento,
+                c.activo,
                 c.monto,
                 GREATEST(
                     c.monto - COALESCE(SUM(dp.monto_aplicado), 0),
@@ -116,6 +117,7 @@ export const listaSocios = `WITH cuotas_saldo AS (
             s.nombre,
             s.apellido,
             s.dni,
+            s.activo,
             pl.dias AS nombre_plan,
             TO_CHAR(COALESCE(uc.saldo, 0), 'FM999G999G999G990') AS monto_a_pagar,
             uc.vencimiento,

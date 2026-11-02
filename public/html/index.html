@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socios - GYM VG</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/pages/socios.css">
-    <script type="module" src="../js/ui/socio.js"></script>
+    <link rel="stylesheet" href="../css/pages/index.css">
+    <script type="module" src="../js/ui/inicio.js"></script>
 </head>
 <body>
     <!-- Encabezado -->
@@ -19,7 +19,126 @@
 
 
     <main class="main">
-        
+        <div class="search-wrap">
+            <div class="buscador input-wrapper">
+                <input class="input" type="text" id="buscador" placeholder="Buscar socio">
+                <span class="icono-lupa">
+                    <img src="../img/search.svg" alt="">
+                </span>
+            </div>
+        </div>
+
+        <div class="greeting">
+            <h1>¡Hola, Victoria!</h1>
+            <p>Hoy vencen <strong>1 cuota</strong>.</p>
+        </div>
+
+        <!-- Income -->
+        <section>
+            <section class="income-card">
+                <span class="income-label">Ingresos del mes</span>
+                <div class="income-amount">$900,000</div>
+            </section>
+
+
+            <section class="resumen">
+                <div class="resumen-title">Resumen del mes</div>
+                <ul class="resumen-list">
+                    <li class="resumen-item">
+                        <span>Total de socios</span>
+                        <span class="num blue">45</span>
+                    </li>
+                    <li class="resumen-item">
+                        <span>Socios activos</span>
+                        <span class="num yellow">30</span>
+                    </li>
+                    <li class="resumen-item">
+                        <span>Cuotas pagadas</span>
+                        <span class="num green">25</span>
+                    </li>
+                    <li class="resumen-item">
+                        <span>Cuotas vencidas</span>
+                        <span class="num red">5</span>
+                    </li>
+                </ul>
+            </section>
+        </section>
+             
+        <section class="alertas">
+            <div class="alertas-title">Alertas de deudas</div>
+
+            <article class="debt-card">
+                <div class="debt-info">
+                <div class="debt-name-row">
+                    <span class="debt-name">Marcos Ramirez</span>
+                    <span class="badge">Vencido</span>
+                </div>
+                <span class="debt-dni">DNI: 41.568.436</span>
+                </div>
+                <span class="debt-amount">$21,000</span>
+                <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </article>
+
+            <article class="debt-card">
+                <div class="debt-info">
+                <div class="debt-name-row">
+                    <span class="debt-name">Marcos Ramirez</span>
+                    <span class="badge">Vencido</span>
+                </div>
+                <span class="debt-dni">DNI: 41.568.436</span>
+                </div>
+                <span class="debt-amount">$21,000</span>
+                <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </article>
+
+            <article class="debt-card">
+                <div class="debt-info">
+                <div class="debt-name-row">
+                    <span class="debt-name">Marcos Ramirez</span>
+                    <span class="badge">Vencido</span>
+                </div>
+                <span class="debt-dni">DNI: 41.568.436</span>
+                </div>
+                <span class="debt-amount">$21,000</span>
+                <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </article>
+
+            <article class="debt-card">
+                <div class="debt-info">
+                <div class="debt-name-row">
+                    <span class="debt-name">Marcos Ramirez</span>
+                    <span class="badge">Vencido</span>
+                </div>
+                <span class="debt-dni">DNI: 41.568.436</span>
+                </div>
+                <span class="debt-amount">$21,000</span>
+                <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </article>
+
+            <article class="debt-card">
+                <div class="debt-info">
+                    <div class="debt-name-row">
+                        <span class="debt-name">Marcos Ramirez</span>
+                        <span class="badge">Vencido</span>
+                    </div>
+                    <span class="debt-dni">DNI: 41.568.436</span>
+                </div>
+                <span class="debt-amount">$21,000</span>
+                <svg class="debt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </article>
+
+            <a class="btn btn-secundario" type="button">Ver más</a>
+        </section>
     </main>
 
     <!-- Navegación inferior -->

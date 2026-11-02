@@ -1,0 +1,206 @@
+.main.app-contenedor {
+    padding: 0.4rem 1rem 6rem;
+}
+
+.main.app-contenedor > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 1.4rem auto 2.5rem;
+    padding: 0;
+    border: 0;
+}
+
+.main.app-contenedor > header > div {
+    min-width: 0;
+}
+
+.main.app-contenedor > header h1 {
+    color: var(--text-primary);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.main.app-contenedor > header p {
+    margin-top: 0.25rem;
+    color: var(--primary-light);
+    font-size: 0.9rem;
+}
+
+
+.contenedor-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem 1.25rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-width: 0;
+    min-height: 6.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-subtle);
+    border-left: 5px solid var(--primary);
+    border-radius: var(--radio-md);
+    background: var(--bg-card);
+}
+
+.tarjeta > div:first-child {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.tarjeta h2:first-child {
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--primary-light);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tarjeta p {
+    display: -webkit-box;
+    overflow: hidden;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.tarjeta h2:last-child {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.15rem;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 650;
+    line-height: 1.2;
+}
+
+.tarjeta .periodo {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 400;
+}
+
+.tarjeta .botones {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tarjeta .botones a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.85rem;
+    height: 1.85rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 0.4rem;
+    background: var(--bg-secondary);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.tarjeta .botones a:hover {
+    border-color: var(--primary-light);
+    background: var(--bg-secondary-active);
+}
+
+.tarjeta .botones svg {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+@media (max-width: 900px) {
+    .contenedor-tarjetas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tarjeta {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .main.app-contenedor {
+        padding-right: clamp(1.25rem, 6.8vw, 2rem);
+        padding-left: clamp(1.25rem, 6.8vw, 2rem);
+    }
+
+    .main.app-contenedor > header {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 1.25rem;
+        margin: 1.2rem auto 1.1rem;
+    }
+
+    .main.app-contenedor > header p {
+        font-size: 1rem;
+    }
+
+
+    .contenedor-tarjetas {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.1rem;
+    }
+
+    .tarjeta {
+        min-height: 8.6rem;
+        padding: 1rem 1.25rem;
+        border-left-width: 5px;
+    }
+
+    .tarjeta h2:first-child {
+        font-size: 1.3rem;
+    }
+
+    .tarjeta p {
+        font-size: 0.8rem;
+    }
+
+    .tarjeta h2:last-child {
+        font-size: 1.55rem;
+    }
+
+    .tarjeta .botones {
+        gap: 0.6rem;
+    }
+
+    .tarjeta .botones a {
+        width: 2.35rem;
+        height: 2.35rem;
+    }
+
+    .tarjeta .botones svg {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .tarjeta {
+        gap: 0.65rem;
+        padding-right: 0.85rem;
+        padding-left: 1rem;
+    }
+}

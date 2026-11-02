@@ -1,0 +1,257 @@
+.search-wrap{
+    
+    max-width: 100%;
+    .input-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+.main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--espacio-lg) var(--espacio-md) 6.5rem;
+}
+
+.greeting {
+    padding: 0.25rem 0;
+}
+
+.greeting h1 {
+    margin-bottom: 0.25rem;
+    color: var(--text-strong);
+    font-size: clamp(1.5rem, 1.15rem + 1.6vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.greeting p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.greeting strong {
+    color: var(--warning);
+    font-weight: 700;
+}
+
+.income-card{
+    border-radius:  14px;
+    background: var(--bg-card);
+    padding: var(--espacio-md);
+    border-left: 5px solid var(--primary);
+    margin-bottom:2rem;
+
+}
+
+.income-label {
+    color: var(--primary); 
+    text-transform: uppercase;
+    padding-bottom: 8rem;
+    font-weight: 700; 
+    font-size: 0.95rem; 
+}
+
+.income-amount {
+    color: var(--text-strong);
+    font-size: 3rem;
+    font-weight: 750;
+}
+
+
+.resumen-title,
+.alertas-title {
+    margin-bottom: 0.85rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 650;
+    text-transform: uppercase;
+}
+
+.resumen-list {
+    display: grid;
+    gap: 0.15rem;
+    list-style: none;
+}
+
+.resumen-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.resumen-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.resumen-item .num {
+    min-width: 2rem;
+    color: var(--text-strong);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.resumen-item .blue {
+    color: var(--primary-light);
+}
+
+.resumen-item .yellow {
+    color: var(--warning);
+}
+
+.resumen-item .green {
+    color: var(--success-bright);
+}
+
+.resumen-item .red {
+    color: var(--danger);
+}
+
+.alertas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
+}
+
+.alertas-title {
+    margin-bottom: 0.1rem;
+}
+
+.debt-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 0.8rem 0.9rem;
+    border-radius: var(--radio-sm);
+    background: var(--bg-card);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.debt-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+}
+
+.debt-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.debt-name-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.55rem;
+    margin-bottom: 0.2rem;
+}
+
+.debt-name {
+    overflow: hidden;
+    color: var(--text-strong);
+    font-size: 0.85rem;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.debt-card .badge {
+    flex: 0 0 auto;
+    padding: 0.25rem 0.5rem;
+    border-color: var(--badge-danger-border);
+    background: var(--badge-danger-bg);
+    color: var(--danger);
+    font-size: 0.65rem;
+}
+
+.debt-card .badge::before {
+    display: none;
+}
+
+.debt-dni {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+}
+
+.debt-amount {
+    flex: 0 0 auto;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.debt-arrow {
+    flex: 0 0 auto;
+    color: var(--text-muted);
+}
+
+.btn-secundario {
+    font-size: 0.8rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-more:hover {
+    border-color: var(--primary-light);
+    background: var(--bg-secondary-active);
+}
+
+@media (min-width: 700px) {
+    .main {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        column-gap: 3rem;
+        padding-top: var(--espacio-xl);
+    }
+
+    .search-wrap,
+    .greeting {
+        grid-column: 1 / -1;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    .main{
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+    
+
+}
+
+@media (min-width: 1400px) {
+    .alertas{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .alertas .alertas-title,
+    .alertas .btn-secundario {
+        grid-column: 1 / -1;
+    }
+
+    .btn-secundario {
+        padding: 0;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    .debt-card {
+        gap: 0.45rem;
+        padding: 0.7rem;
+    }
+
+    .debt-amount {
+        font-size: 0.8rem;
+    }
+}
